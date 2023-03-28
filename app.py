@@ -38,12 +38,17 @@ def add():
             #   "activities": activities,
         }
         print(friend_dict)
-        friend_list.append(friend_dict)
-        print(friend_list)
+        friend_dict.append(friend_dict)
+        print(friend_dict)
         return redirect(url_for("index"))
     else:
         return redirect(url_for("index"))
 
-
+@app.route("/about")
+def about():
+    return render_template(
+        "about.html", pageTitle="Web form template", friends=friend_dict)
+        
+        
 if __name__ == "__main__":
     app.run(debug=True)
