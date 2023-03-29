@@ -14,7 +14,7 @@ all_books_dict = [
 
         "classification": "fiction",
 
-        "details": "read, recommend",
+        "details": "read, highly recommend",
 
         "acquisition": "library",
 
