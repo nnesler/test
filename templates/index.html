@@ -1,96 +1,167 @@
 {% extends 'base.html' %} {% block body %}
-<h2>Digital Product Management - Web Form Template</h2>
-<hr />
-<main>
-  <form action="/add" method="POST">
-    <p>
-      <label for="first-name">First name:</label>
-      <input type="text" id="first-name" name="fname" />
-    </p>
-
-    <p>
-      <label for="ice-cream">
-        Favorite flavor of ice cream:
-        <select name="flavor" id="ice-cream">
-          <option value="" selected>Choose one ...</option>
-          <option value="vanilla">Vanilla</option>
-          <option value="chocolate">Chocolate</option>
-          <option value="swirl">Swirl</option>
-        </select>
-      </label>
-    </p>
-    <p>
-      <label>Do you read for fun?</label>
-      <label for="read-yes">
-        <input type="radio" id="read-yes" name="read" value="yes" /> Yes
-      </label>
-
-      <label for="read-no">
-        <input type="radio" id="read-no" name="read" value="no" /> No
-      </label>
-    </p>
-
-    <fieldset>
-      <legend>Choose your favorite activities</legend>
-      <label for="for-running">
-        <input
-          type="checkbox"
-          id="for-running"
-          name="activities"
-          value="running"
-        />
-        Running
-      </label>
-
-      <label for="for-biking">
-        <input
-          type="checkbox"
-          id="for-biking"
-          name="activities"
-          value="biking"
-        />
-        Biking
-      </label>
-
-      <label for="for-reading">
-        <input
-          type="checkbox"
-          id="for-reading"
-          name="activities"
-          value="reading"
-        />
-        Reading
-      </label>
-    </fieldset>
-
-    <p><input type="submit" id="submit" value="Submit" /></p>
-  </form>
-
-  <br /><br />
-  {% if friends %}
-  <h3>Friend List</h3>
+  <h2>Add a movie to my library</h2>
   <hr />
+  <main>
+    <form action="/add" method="POST">
+      <p>
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" />
+      </p>
+
+      <p>
+        <label for="director">Director:</label>
+        <input type="text" id="director" name="director" />
+      </p>
+      <p>
+
+        <label for="time">Time in minutes:</label>
+        <input type="text" id="time" name="time" />
+      </p>
+
+      <p>
+        <label>Genre:</label>
+        <label for="comedy">
+          <input
+            type="radio"
+            id="comedy"
+            name="genre"
+            value="comedy"
+            required="required"
+          />
+          Comedy
+        </label>
+
+        <label for="action">
+          <input
+            type="radio"
+            id="action"
+            name="genre"
+            value="action"
+            required="required"
+          />
+          Action
+        </label>
+      </p>
+
+      <fieldset>
+        <legend>Viewing Expirience:</legend>
+        <label for="movie">
+          <input
+            type="checkbox"
+            id="movie"
+            name="movie"
+            value="bought"
+          />
+          I bought this movie
+        </label>
+
+        <label for="movie">
+          <input
+            type="checkbox"
+            id="movie"
+            name="movie"
+            value="stream"
+          />
+          I streamed this movie
+        </label>
+
+        <label for="movie">
+          <input
+            type="checkbox"
+            id="movie"
+            name="movie"
+            value="theater"
+          />
+          I watched this in theater
+        </label>
+
+        <label for="movie">
+            <input
+              type="checkbox"
+              id="movie"
+              name="movie"
+              value="again"
+            />
+            I would watch this movie again
+          </label>
+      </fieldset>
+
+      <p>
+        <label for="streaming">
+          What streaming service movie is this on?
+          <select name="service" id="service" required>
+            <option value="" selected>- Select option -</option>
+            <option value="Hulu">Hulu</option>
+            <option value="Netflix">Netflix</option>
+            <option value="Amazon Prime">Amazon Prime</option>
+            <option value="None">None</option>
+          </select>
+        </label>
+        <p><input type="submit" id="submit" value="Add Movie" /></p>
+      </p>
+      
+
+    </form>
+
+    <br /><br />
+    {% if movie %}
+
+  <h2>List of Movies</h2>
+
+  <hr />
+
   <table border="1">
+
     <thead>
+
       <tr>
-        <th>Name</th>
-        <th>Favorite Ice Cream</th>
-        <th>Read for Fun</th>
-        <th>Favorite Activities</th>
+
+        <th>Title</th>
+
+        <th>Director</th>
+
+        <th>Time in minutes</th>
+
+        <th>Genre</th>
+
+        <th>Viewing Experience</th>
+
+        <th>Streaming Service</th>
+
       </tr>
+
     </thead>
 
+ 
+
     <tbody>
-      {% for friend in friends %}
+
+      {% for movie in movies %}
+
       <tr>
-        <td>{{ friend.name }}</td>
-        <td>{{ friend.flavor }}</td>
-        <td>{{ friend.read }}</td>
-        <td>{{ friend.activities }}</td>
+
+        <td>{{ movie.title }}</td>
+
+        <td>{{ movie.director }}</td>
+
+        <td>{{ movie.time }}</td>
+
+        <td>{{ movie.genre }}</td>
+
+        <td>{{ movie.viewing }}</td>
+
+        <td>{{ movie.experience }}</td>
+
       </tr>
+
       {% endfor %}
+
     </tbody>
+
   </table>
+
   {% endif %}
+
 </main>
+
 {% endblock %}
