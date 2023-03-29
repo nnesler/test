@@ -44,8 +44,8 @@ def add():
         director = form["director"]
         time = form["time"]
         genre = form["genre"]
-        viewing = form["movie"]
-        streaming = form.getlist("streaming")
+        viewing = form.getlist("movie")
+        streaming = form["service"]
 
         print(title)
         print(director)
@@ -54,15 +54,15 @@ def add():
         print(viewing)
         print(streaming)
 
-        streaming_string = ", ".join(streaming)
+        viewing_string = ", ".join(viewing)
 
         movie_dict = {
             "title": title,
             "director": director,
             "time": time,
             "genre": genre,
-            "viewing": viewing,
-            "streaming": streaming_string,
+            "viewing": viewing_string,
+            "streaming": streaming,
         }
 
         print(movie_dict)

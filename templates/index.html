@@ -87,7 +87,7 @@
       </fieldset>
 
       <p>
-        <label for="streaming">
+        <label for="service">
           What streaming service movie is this on?
           <select name="service" id="service" required>
             <option value="" selected>- Select option -</option>
@@ -104,7 +104,7 @@
     </form>
 
     <br /><br />
-    {% if movie %}
+    {% if movies %}
 
   <h2>List of Movies</h2>
 
@@ -150,7 +150,7 @@
 
         <td>{{ movie.viewing }}</td>
 
-        <td>{{ movie.experience }}</td>
+        <td>{{ movie.streaming }}</td>
 
       </tr>
 
