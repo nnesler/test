@@ -2,21 +2,21 @@ from flask import Flask, request, render_template, redirect, url_for
 
 app = Flask(__name__)
 
-all_books_dict = [
+all_movies_dict = [
 
     {
 
         "title": "The Hunger Games",
 
-        "author": "Suzanne Collins",
+        "director": "Suzanne Collins",
 
-        "pages": 384,
+        "time": 220,
 
-        "classification": "fiction",
+        "genre": "fiction",
 
-        "details": "read, highly recommend",
+        "viewing": "theater, again",
 
-        "acquisition": "library",
+        "streaming": "Netflix",
 
     },]
 
@@ -24,7 +24,7 @@ all_books_dict = [
 
 def index():
 
-    return render_template("index.html", pageTitle="My Library", books=all_books_dict)
+    return render_template("index.html", pageTitle="My Movies", movies=all_movies_dict)
 
  
 
@@ -41,35 +41,35 @@ def add():
         form = request.form
 
         title = form["title"]
-        author = form["author"]
-        pages = form["pages"]
-        classification = form["genre"]
-        details = form["book"]
-        acquistion = form.getlist("how")
+        director = form["director"]
+        time = form["time"]
+        genre = form["genre"]
+        viewing = form["movie"]
+        streaming = form.getlist("streaming")
 
         print(title)
-        print(author)
-        print(pages)
-        print(classification)
-        print(details)
-        print(acquistion)
+        print(director)
+        print(time)
+        print(genre)
+        print(viewing)
+        print(streaming)
 
-        acquistion_string = ", ".join(acquistion)
+        streaming_string = ", ".join(streaming)
 
-        book_dict = {
+        movie_dict = {
             "title": title,
-            "author": author,
-            "pages": pages,
-            "classification": classification,
-            "details": details,
-            "acquisition": acquistion_string,
+            "director": director,
+            "time": time,
+            "genre": genre,
+            "viewing": viewing,
+            "streaming": streaming_string,
         }
 
-        print(book_dict)
-        all_books_dict.append(
-            book_dict
+        print(movie_dict)
+        all_movies_dict.append(
+            movie_dict
         ) 
-        print(all_books_dict)
+        print(all_movies_dict)
         return redirect(url_for("index"))
     else:
         return redirect(url_for("index"))
@@ -77,7 +77,7 @@ def add():
 @app.route('/about')
 def about():
     return render_template(
-        "about.html", pageTitle="Web form template", books=all_books_dict
+        "about.html", pageTitle="Web form template", movies=all_movies_dict
     )
 
 
