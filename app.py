@@ -1,6 +1,7 @@
-from flask import Flask, request, render_template, redirect, url_for
+from flask import Flask, request, render_template, redirect, url_for, flash
 
 app = Flask(__name__)
+app.config["SECRET_KEY"] = "your_random_string"
 
 all_movies_dict = [
 
@@ -19,6 +20,17 @@ all_movies_dict = [
         "streaming": "Netflix",
 
     },]
+
+# Handling error 404 and displaying relevant web page
+@app.errorhandler(404)
+def not_found_error(error):
+    return render_template("404.html"), 404
+
+# Handling error 500 and displaying relevant web page
+@app.errorhandler(500)
+def internal_error(error):
+    return render_template("500.html"), 500
+
 
 @app.route("/", methods=["GET", "POST"])
 
@@ -70,6 +82,7 @@ def add():
             movie_dict
         ) 
         print(all_movies_dict)
+        flash('Sucess! Your record has been added.', 'success')
         return redirect(url_for("index"))
     else:
         return redirect(url_for("index"))
