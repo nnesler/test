@@ -1,7 +1,7 @@
 from flask import Flask, request, render_template, redirect, url_for, flash
 
 app = Flask(__name__)
-app.config["SECRET_KEY"] = "your_random_string"
+app.config["SECRET_KEY"] = "fhdiufsui7374bjfsui"
 
 all_movies_dict = [
 
